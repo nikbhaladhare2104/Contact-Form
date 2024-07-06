@@ -1,6 +1,6 @@
 import React from "react";
 
-const success = () => {
+const Success = () => {
   return (
     <div className="success">
       <div className="success-heading">
@@ -14,4 +14,4 @@ const success = () => {
   );
 };
 
-export default success;
+export default Success;

@@ -5,7 +5,10 @@
   /* line-height: 1.5; */
   /* font-weight: 400; */
 
-  background-color: var(--Green-200);
+  /* DONT USE THIS IF YOU ARE APPLYING DARK MODE */
+  /* background-color: var(--Green-200);  */
+
+
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,27 +16,59 @@
   -moz-osx-font-smoothing: grayscale;
 
 
---Green-200: hsl(148, 38%, 91%);
---Green-400: hsl(169, 62%, 80%);
---Green-600 : hsl(169, 82%, 27%);
---Red: hsl(0, 66%, 54%);
+  --Green-200: hsl(148, 38%, 91%);
+  --Green-400: hsl(169, 62%, 80%);
+  --Green-600 : hsl(169, 82%, 27%);
+  --Red: hsl(0, 66%, 54%);
 
---White: hsl(0, 0%, 100%);
---Grey-500: hsl(186, 15%, 59%);
---Grey-900: hsl(187, 24%, 22%);
+  --White: hsl(0, 0%, 100%);
+  --Grey-500: hsl(186, 15%, 59%);
+  --Grey-900: hsl(187, 24%, 22%);
+
+  /* DARK MODE COLORS */
+  --primary-500: #877EFF;
+  --primary-600: #5D5FEF;
+  --secondary-500: #FFB620;
+  --off-white: #D0DFFF;
+  --red: #FF5A5A;
+  --dark-1: #000000;
+  --dark-2: #09090A;
+  --dark-3: #191925;
+  --dark-4: #2e2e35;
+  --light-1: #FFFFFF;
+  --light-2: #EFEFEF;
+  --light-3: #7878A3;
+  --light-4: #5C5C7B;
+
+  --White: hsl(0, 0%, 100%);
+  --Light-Grey: hsl(217, 12%, 63%);
+  --Dark-Blue: hsl(213, 19%, 18%);
+  --Very-Dark-Blue: hsl(216, 12%, 8%);
+  --Card-blue: hsl(216, 22%, 14%);
+
 }
 
 body {
   margin: 0;
+  padding: 0;
+  background-color: var(--Green-200);
 }
+
+body.dark {
+  background-color: var(--dark-1);
+  
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
+  padding: 0;
 }
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -41,11 +76,18 @@ main {
   margin: 0;
   padding: 0
 }
+main.dark {
+  background-color: var(--dark-1);
+}
 .container {
   background-color: var(--White);
   border-radius: 10px;
   padding: 2rem;
   width: 600px;
+}
+main.dark .container {
+  background-color: var(--dark-3);
+  color: var(--White);
 }
 .name {
   display: flex;
@@ -90,7 +132,7 @@ input:focus {
 .query {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   
 }
 .query-types {
@@ -149,7 +191,7 @@ input:focus {
   margin-right: 1rem;
   cursor: pointer;
 }
-.btn {
+.submit-btn {
   background-color: var(--Green-600);
   color: var(--White);
   border: none;
@@ -172,10 +214,227 @@ input:focus {
   background-color: var(--Green-600);
 }
 
+
+
+/* DARK MODE CSS */
+
+/* INPUT CSS */
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.input-group.message {
+  margin-bottom: 1rem;
+  height: 200px;
+}
+.input-group.message > textarea {
+  padding: 0.7rem 1rem ;
+}
+main.dark .input {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  background: none;
+  padding: o.7rem 1rem;
+  font-size: 1rem;
+  color: #f5f5f5;
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+}
+
+.user-label {
+  position: absolute;
+  left: 15px;
+  color: #e8e8e8;
+  pointer-events: none;
+  transform: translateY(0.7rem);
+  transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* main.dark .input:focus,
+main.dark > input:valid {
+  outline: none;
+  border: 1.5px solid #1a73e8;
+}
+
+main.dark .input:focus~label,
+main.dark > input:valid~label
+{
+  transform: translateY(-50%) scale(0.8);
+  background-color: #212121;
+  padding: 0 .2em;
+  color: #2196f3;
+} */
+ main.dark .input:focus,
+ main.dark .input:not(:placeholder-shown) {
+   outline: none;
+   border: 1.5px solid #1a73e8;
+ }
+
+ main.dark .input:focus~.user-label,
+ main.dark .input:not(:placeholder-shown)~.user-label {
+   transform: translateY(-50%) scale(0.8);
+   background-color: #212121;
+   padding: 0 0.2em;
+   color: #2196f3;
+ }
+
+/* QUERY BUTTONS CSS */
+
+.radio-button-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.radio-button {
+  /* display: inline-block; */
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 15px;
+  color: #f2f2f2;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s ease;
+}
+
+.radio-button__input:checked+.radio-button__label .radio-button__custom {
+  background-color: #4c8bf5;
+  border-color: transparent;
+  transform: scale(0.8);
+  box-shadow: 0 0 20px #4c8bf580;
+}
+
+.radio-button__input:checked+.radio-button__label {
+  color: #4c8bf5;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: scale(1.2);
+  border-color: #4c8bf5;
+  box-shadow: 0 0 20px #4c8bf580;
+}
+
+
+/* CHECKBOX */
+main.dark .conditions {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.condition-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.condition-label {
+  cursor: pointer;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.condition-label input {
+  display: none;
+}
+
+.condition-label svg {
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+
+.path {
+  fill: none;
+  stroke: white;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+  stroke-dasharray: 241 9999999;
+  stroke-dashoffset: 0;
+}
+
+.condition-label input:checked~svg .path {
+  stroke-dasharray: 70.5096664428711 9999999;
+  stroke-dashoffset: -262.2723388671875;
+}
+/* BUTTON */
+
+.btn {
+  width: 100%;
+  margin-bottom: 4rem;
+  font-size: 1.2rem;
+  padding: 1rem 2.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
+  font-weight: 700;
+  transition: 0.6s;
+  box-shadow: 0px 0px 60px #1f4c65;
+  -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.4));
+}
+
+.btn:active {
+  scale: 0.92;
+  
+}
+
+.btn:hover {
+  background: rgb(2, 29, 78);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+  color: rgb(4, 4, 38);
+}
+
+
+
+
+/* MEDIA QUERIES */
+
 @media screen and (max-width: 660px) {
   main {
     padding: 2rem 1rem ;
     height: 100%;
+  }
+  .container {
+    width: 100%;
   }
   .name {
     flex-direction: column;
@@ -195,3 +454,5 @@ input:focus {
     border-radius: 3px;
   }
 }
+
+
